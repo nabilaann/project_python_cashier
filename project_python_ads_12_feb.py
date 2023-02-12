@@ -13,9 +13,21 @@ import pandas as pd
 
 class Transaction():
     def __init__(self):
+        '''
+        Fungsi untuk menginisialisasi dictionary item yang dibeli
+        '''
         self.item_dibeli = dict()
     
     def add_item(self):
+        '''
+        Fungsi untuk menambahkan item 
+
+        Parameters:
+        nama_item: nama item (str)
+        jumlah: jumlah item (int)
+        harga: harga per item (int)
+        total_harga: total harga (int)
+        '''
         nama_item = input('Masukkan nama item yang dibeli: ')
         jumlah = int(input('Masukkan jumlah item yang dibeli: '))
         harga = int(input('Masukkan harga item yang dibeli: '))
@@ -23,26 +35,63 @@ class Transaction():
         self.item_dibeli.update({nama_item: [jumlah, harga, total_harga]})
 
     def update_nama_item(self, nama_item, nama_item_updated):
+        '''
+        Fungsi untuk mengupdate nama item 
+    
+        Parameters:
+        nama_item: nama item (str)
+        nama_item_updated: nama item yang diupdate (str)
+        '''
         temp = self.item_dibeli[nama_item]
         self.item_dibeli.pop(nama_item)
         self.item_dibeli.update({nama_item_updated: temp})
 
     def update_jumlah(self, nama_item, jumlah_updated):
+        '''
+        Fungsi untuk mengupdate jumlah item 
+    
+        Parameters:
+        nama_item: nama item (str)
+        jumlah_updated: jumlah item yang diupdate (int)
+        '''
         self.item_dibeli[nama_item][0] = jumlah_updated
 
     def update_harga(self, nama_item, harga_updated):
+        '''
+        Fungsi untuk mengupdate harga item
+    
+        Parameters:
+        nama_item: nama item (str)
+        harga_updated: jumlah harga yang diupdate (int)
+        '''
         self.item_dibeli[nama_item][1] = harga_updated
 
     def update_total_harga(self, nama_item, total_harga_updated):
+        '''
+        Fungsi untuk mengupdate total harga item
+    
+        Parameters:
+        nama_item: nama item (str)
+        total_harga_updated: jumlah harga yang diupdate (int)
+        '''
         self.item_dibeli[nama_item][2] = total_harga_updated
 
     def delete_item(self, nama_item):
+        '''
+        Fungsi untuk menghapus salah satu item yang dibeli
+        '''
         self.item_dibeli.pop(nama_item)
 
     def reset_order(self):
+        '''
+        Fungsi untuk menghapus keseluruhan item yang dibeli
+        '''
         self.item_dibeli.clear()
 
     def subtotal(self, nama_item):
+        '''
+        Fungsi untuk menampilkan diskon
+        '''
         if(self.item_dibeli[nama_item][2] >= 200_000):
           print('Anda mendapatkan diskon 5%')
         elif(self.item_dibeli[nama_item][2] >= 300_000):
@@ -52,6 +101,15 @@ class Transaction():
         
 
     def check_order(self):
+        '''
+        Fungsi untuk mengecek item yang telah dibeli
+
+        Parameters:
+        nama_item: nama item (str)
+        jumlah: jumlah item (int)
+        harga: harga item (int)
+        total_harga : total harga (int)
+        '''
         if(len(self.item_dibeli) == 0):
             print('Tidak ada item di keranjang')
         else:
